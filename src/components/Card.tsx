@@ -1,6 +1,7 @@
 import content from "./content.ts";
 import type { Language } from "../types.ts";
 import { useState } from "react";
+import CardContent from "./CardContent.tsx";
 
 interface CardProps {
   language: Language;
@@ -41,7 +42,7 @@ const Card = ({ language }: CardProps) => {
               e.stopPropagation();
             }}
           >
-            <p>{content.card[openIndex].title[language]}</p>
+            <CardContent openIndex={openIndex} language={language} />
           </div>
         </div>
       )}

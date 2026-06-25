@@ -10,13 +10,31 @@ const content = {
         en: "Darkerpixel",
         de: "Darkerpixel",
       },
-      pickleImges: {
-        grid: [
-          "../../public/pickle-man.webp",
-          "../../public/pickle-man-sitting.webp",
-          "../../public/pickle-man-standing.webp",
-        ],
-      },
+
+      grid: [
+        {
+          src: "../../public/pickle-man.webp",
+          alt: {
+            en: "The Pickle Man laying limbless",
+            de: "Der Gurkenmann liegt gliedmaßenlos",
+          },
+        },
+        {
+          src: "../../public/pickle-man-sitting.webp",
+          alt: {
+            en: "The Pickle Man sitting on the sofa",
+            de: "Der Gurkenmann sitzt auf dem sofa",
+          },
+        },
+        {
+          src: "../../public/pickle-man-standing.webp",
+          alt: {
+            en: "The Pickle Man standing with sword hands",
+            de: "Der Gurkenmann steht mit schwert händen",
+          },
+        },
+      ],
+
       description: {
         en: "This Pickle man is a very important man. He controlls time and matter itself, so fear him. If you ever meet him and see in his eyes your live is already over.",
         de: "Dieser Pickelmann ist ein sehr wichtiger Mann. Er kontrolliert Materie selbst also sei auf der hut. Wenn du ihn jemals zu gesicht bekommst ist es für dich schon zu spät.",
