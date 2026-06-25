@@ -5,10 +5,21 @@ const content = {
   },
   card: [
     {
-      title: { en: "first entry", de: "erster eintrag" },
+      title: { en: "The Pickle Man", de: "Der Gurkenmann" },
+      author: {
+        en: "Darkerpixel",
+        de: "Darkerpixel",
+      },
+      pickleImges: {
+        grid: [
+          "../../public/pickle-man.webp",
+          "../../public/pickle-man-sitting.webp",
+          "../../public/pickle-man-standing.webp",
+        ],
+      },
       description: {
-        en: "description entry no 1",
-        de: "eingetragene beschreibung no 1",
+        en: "This Pickle man is a very important man. He controlls time and matter itself, so fear him. If you ever meet him and see in his eyes your live is already over.",
+        de: "Dieser Pickelmann ist ein sehr wichtiger Mann. Er kontrolliert Materie selbst also sei auf der hut. Wenn du ihn jemals zu gesicht bekommst ist es für dich schon zu spät.",
       },
     },
     {
