@@ -13,7 +13,7 @@ const CardContent = ({ openIndex, language }: CardContentProps) => {
 
   const handleContent = (key: string, value: any) => {
     if (key === "title") {
-      return <h2 className="card-content">{value[language]}</h2>;
+      return <h2>{value[language]}</h2>;
     } else if (key === "author") {
       return <p className="author">{value[language]}</p>;
     } else if (key.startsWith("description")) {
@@ -31,11 +31,11 @@ const CardContent = ({ openIndex, language }: CardContentProps) => {
     }
   };
   return (
-    <>
+    <div className="card-content">
       {Object.entries(content.card[openIndex]).map(([key, value]) => {
         return <div key={key}>{handleContent(key, value)}</div>;
       })}
-    </>
+    </div>
   );
 };
 
