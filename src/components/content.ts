@@ -1,3 +1,4 @@
+//content.ts
 const content = {
   header: {
     main: { en: "Welcome", de: "Willkommen" },
@@ -7,8 +8,8 @@ const content = {
     {
       title: { en: "The Pickle Man", de: "Der Gurkenmann" },
       author: {
-        en: "Darkerpixel",
-        de: "Darkerpixel",
+        en: "by Darkerpixel",
+        de: "von Darkerpixel",
       },
 
       grid: [

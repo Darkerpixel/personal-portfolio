@@ -1,26 +1,26 @@
-import content from "./content";
-import type { Language } from "../types";
+import content from "./content.ts";
+import type { Language } from "../types.ts";
 
-interface CardProps {
-  language: Language;
+interface CardContentProps {
   openIndex: number;
+  language: Language;
 }
 
-const CardContent = ({ openIndex, language }: CardProps) => {
+const CardContent = ({ openIndex, language }: CardContentProps) => {
   const handleImage = (item: any, index: number) => {
     return <img key={index} src={item.src} alt={item.alt[language]} />;
   };
 
   const handleContent = (key: string, value: any) => {
     if (key === "title") {
-      return <p>{value[language]}</p>;
+      return <h2>{value[language]}</h2>;
     } else if (key === "author") {
-      return <p>{value[language]}</p>;
+      return <p className="author">{value[language]}</p>;
     } else if (key.startsWith("description")) {
-      return <p>{value[language]}</p>;
+      return <p className="description">{value[language]}</p>;
     } else if (key.startsWith("grid")) {
       return (
-        <div>
+        <div className="image-grid">
           {value.map((item: any, index: number) => {
             return handleImage(item, index);
           })}
@@ -30,13 +30,12 @@ const CardContent = ({ openIndex, language }: CardProps) => {
       return null;
     }
   };
-
   return (
-    <>
+    <div className="card-content">
       {Object.entries(content.card[openIndex]).map(([key, value]) => {
         return <div key={key}>{handleContent(key, value)}</div>;
       })}
-    </>
+    </div>
   );
 };
 
