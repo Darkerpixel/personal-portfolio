@@ -7,32 +7,35 @@ interface CardContentProps {
 }
 
 const CardContent = ({ openIndex, language }: CardContentProps) => {
-  const card = content.card[openIndex];
+  const handleImage = (item: any, index: number) => {
+    return <img key={index} src={item.src} alt={item.alt[language]} />;
+  };
 
-  return (
-    <div className="card-content">
-      <h2>{card.title[language]}</h2>
-      
-      {card.author && (
-        <p className="author">by {card.author.en}</p>
-      )}
-      
-      {card.grid && (
+  const handleContent = (key: string, value: any) => {
+    if (key === "title") {
+      return <h2 className="card-content">{value[language]}</h2>;
+    } else if (key === "author") {
+      return <p className="author">{value[language]}</p>;
+    } else if (key.startsWith("description")) {
+      return <p className="description">{value[language]}</p>;
+    } else if (key.startsWith("grid")) {
+      return (
         <div className="image-grid">
-          {card.grid.map((image, idx) => (
-            <img
-              key={idx}
-              src={image.src}
-              alt={image.alt[language]}
-            />
-          ))}
+          {value.map((item: any, index: number) => {
+            return handleImage(item, index);
+          })}
         </div>
-      )}
-      
-      {card.description && (
-        <p className="description">{card.description[language]}</p>
-      )}
-    </div>
+      );
+    } else {
+      return null;
+    }
+  };
+  return (
+    <>
+      {Object.entries(content.card[openIndex]).map(([key, value]) => {
+        return <div key={key}>{handleContent(key, value)}</div>;
+      })}
+    </>
   );
 };
 
