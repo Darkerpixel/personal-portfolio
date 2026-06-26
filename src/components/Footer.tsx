@@ -8,9 +8,9 @@ interface FooterProps {
 
 const Footer = ({ language }: FooterProps) => {
   return (
-    <>
-      <h3>{content.footer[language]}</h3>
-    </>
+    <footer className="footer">
+      <h3>© 2026 <span>PickleMan</span> • {content.footer[language]}</h3>
+    </footer>
   );
 };
 
