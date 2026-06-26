@@ -1,3 +1,4 @@
+//Card.tsx
 import content from "./content.ts";
 import type { Language } from "../types.ts";
 import { useState } from "react";

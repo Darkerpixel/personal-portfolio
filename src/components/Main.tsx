@@ -1,3 +1,4 @@
+//Main.tsx
 import Card from "./Card";
 import type { Language } from "../types";
 

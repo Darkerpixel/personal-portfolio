@@ -1,3 +1,4 @@
+//content.ts
 const content = {
   header: {
     main: { en: "Welcome", de: "Willkommen" },
