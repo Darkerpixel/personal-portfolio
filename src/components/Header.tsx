@@ -11,8 +11,8 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false); // opens language selector
 
   return (
-    <>
-      <h1>{content.header.main[language]}</h1>
+    <header className="header">
+      <h1 className="header-title">{content.header.main[language]}</h1>
       {isOpen ? (
         <div
           className="backdrop transparent"
@@ -20,14 +20,14 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
             setIsOpen(false);
           }}
         >
-          <button
+          <button className="language-btn"
             onClick={() => {
               setLanguage("en");
             }}
           >
             en
           </button>
-          <button
+          <button className="language-btn"
             onClick={() => {
               setLanguage("de");
             }}
@@ -36,7 +36,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
           </button>
         </div>
       ) : (
-        <button
+        <button className="language-btn"
           onClick={() => {
             setIsOpen(true);
           }}
@@ -44,7 +44,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
           {content.header.languageSelector[language]}
         </button>
       )}
-    </>
+    </header>
   );
 };
 
