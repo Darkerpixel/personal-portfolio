@@ -13,14 +13,14 @@
   /* Colors */
   --color-primary: #2563eb;
   --color-secondary: #64748b;
-  --color-bg: #F5ECE6;
+  --color-bg: #f5ece6;
   --color-text: #1e293b;
   --color-muted: #94a3b8;
   --color-border: #e2e8f0;
   --color-success: #16a34a;
   --color-warning: #f59e0b;
   --color-danger: #dc2626;
-  
+
   --color-header-bg: #1a1a2e;
   --color-header-text: #e0e0e0;
   --color-accent: #e94560;
@@ -50,7 +50,7 @@
   --fs-4xl: 2.5rem;
 
   /* Schriftarten */
-  --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   /* Border Radius */
   --radius-sm: 4px;
@@ -208,6 +208,7 @@ p {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
+  z-index: 1001;
   background: var(--color-header-bg);
   border: 2px solid var(--color-accent);
   border-radius: var(--radius-lg);
@@ -348,7 +349,6 @@ p {
   background: rgba(220, 38, 38, 0.1);
   transform: rotate(90deg);
 }
-
 
 /* --- CARD CONTENT --- */
 .card-content {
@@ -495,7 +495,6 @@ p {
     }
   }
 }
-
 
 /* --- Laptop: 769 px - 1024 px --- */
 @media (min-width: 769px) and (max-width: 1024px) {
