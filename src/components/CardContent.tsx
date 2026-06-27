@@ -1,3 +1,4 @@
+//CardContent.tsx
 import content from "./content.ts";
 import type { Language } from "../types.ts";
 
@@ -31,11 +32,11 @@ const CardContent = ({ openIndex, language }: CardContentProps) => {
     }
   };
   return (
-    <div className="card-content">
+    <>
       {Object.entries(content.card[openIndex]).map(([key, value]) => {
         return <div key={key}>{handleContent(key, value)}</div>;
       })}
-    </div>
+    </>
   );
 };
 
