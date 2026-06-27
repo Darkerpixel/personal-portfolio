@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { MDXProvider } from "@mdx-js/react";
+import * as MdxComponents from "./mdx-components.tsx";
 import type { Language } from "../types";
 
 interface CardProps {
@@ -36,20 +38,22 @@ const Card1 = ({ language }: CardProps) => {
       })}
 
       {Content && (
-        <div className="backdrop" onClick={() => setOpenIndex(null)}>
-          <div className="card" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setOpenIndex(null)}>
-              ✕
-            </button>
-            <div className="card-inner">
-              {" "}
-              {/* ← new container for the better scroller */}
-              <div className="card-content">
-                <Content />
+        <MDXProvider components={MdxComponents}>
+          <div className="backdrop" onClick={() => setOpenIndex(null)}>
+            <div className="card" onClick={(e) => e.stopPropagation()}>
+              <button className="close-btn" onClick={() => setOpenIndex(null)}>
+                ✕
+              </button>
+              <div className="card-inner">
+                {" "}
+                {/* ← new container for the better scroller */}
+                <div className="card-content">
+                  <Content />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </MDXProvider>
       )}
     </div>
   );
