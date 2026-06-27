@@ -9,7 +9,6 @@ interface CardProps {
 
 const Card = ({ language }: CardProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const modules = {
     en: import.meta.glob("./en/*.mdx", { eager: true }),
@@ -20,7 +19,9 @@ const Card = ({ language }: CardProps) => {
   });
   const Content = openIndex !== null ? projects[openIndex].Component : null;
 
-    // ========== GLITTER-EFFEKT LOGIC ==========
+  // ========== GLITTER-EFFEKT LOGIC ==========
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -31,26 +32,26 @@ const Card = ({ language }: CardProps) => {
     const handlePointerMove = (e: PointerEvent) => {
       const cardItems = container.querySelectorAll(".card");
       const cardsArray = Array.from(cardItems);
-      
+
       for (const card of cardsArray) {
         const cardElement = card as HTMLElement;
         const rect = cardElement.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         cardElement.style.setProperty("--mouse-x", `${x}px`);
         cardElement.style.setProperty("--mouse-y", `${y}px`);
 
         const ratioX = Math.min(Math.max(x / rect.width, 0), 1);
         const ratioY = Math.min(Math.max(y / rect.height, 0), 1);
-        
+
         cardElement.style.setProperty("--ratio-x", ratioX.toString());
         cardElement.style.setProperty("--ratio-y", ratioY.toString());
       }
     };
 
     container.addEventListener("pointermove", handlePointerMove);
-    
+
     return () => {
       container.removeEventListener("pointermove", handlePointerMove);
     };
@@ -58,7 +59,7 @@ const Card = ({ language }: CardProps) => {
   // ========== ENDE GLITTER-EFFEKT ==========
 
   return (
-    <div className="cards-grid" id="cards" ref={containerRef}>  
+    <div className="cards-grid" id="cards" ref={containerRef}>
       {projects.map(({ frontmatter }, index) => {
         return (
           <div
@@ -69,7 +70,7 @@ const Card = ({ language }: CardProps) => {
             }}
           >
             <div className="card-content">
-            <h2>{frontmatter.title}</h2>
+              <h2>{frontmatter.title}</h2>
             </div>
           </div>
         );
@@ -82,10 +83,10 @@ const Card = ({ language }: CardProps) => {
               <button className="close-btn" onClick={() => setOpenIndex(null)}>
                 ✕
               </button>
-                <div className="card-modal-content">
-                  {" "}
-                  {/* ← new container for the better scroller */}
-                  <Content />
+              <div className="card-modal-content">
+                {" "}
+                {/* ← new container for the better scroller */}
+                <Content />
               </div>
             </div>
           </div>
