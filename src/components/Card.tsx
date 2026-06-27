@@ -7,18 +7,16 @@ interface CardProps {
   language: Language;
 }
 
-const Card1 = ({ language }: CardProps) => {
+const Card = ({ language }: CardProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const modules = {
     en: import.meta.glob("./en/*.mdx", { eager: true }),
     de: import.meta.glob("./de/*.mdx", { eager: true }),
   };
-
   const projects = Object.entries(modules[language]).map(([path, mod]: any) => {
     return { path, frontmatter: mod.frontmatter, Component: mod.default };
   });
-
   const Content = openIndex !== null ? projects[openIndex].Component : null;
 
   return (
@@ -59,4 +57,4 @@ const Card1 = ({ language }: CardProps) => {
   );
 };
 
-export default Card1;
+export default Card;

@@ -1,7 +1,7 @@
 import type { ImageProps, ImagesProps } from "../types";
 
 const ImageRaw = ({ src, alt }: ImageProps) => {
-  return <img className="img" src={src} alt={alt} />;
+  return <img src={src} alt={alt} />;
 };
 
 const ImageGrid = ({ images }: ImagesProps) => {
