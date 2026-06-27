@@ -8,9 +8,7 @@ const ImageGrid = ({ images }: ImagesProps, index: number) => {
   return (
     <div className="image-grid">
       {images.map((image) => {
-        return (
-          <img className="img" src={image.src} alt={image.alt} key={index} />
-        );
+        return <img src={image.src} alt={image.alt} key={index} />;
       })}
     </div>
   );
