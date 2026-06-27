@@ -22,6 +22,15 @@ const content = {
         en: "I was invited to build a working prototype for a future system that generates time-lapses of cloned plants - visualizing their growth over time on a web interface.",
         de: "Mir wurde die Möglichkeit gegeben, einen funktionierenden Prototypen für ein zukünftiges System zu entwickeln, welches Zeitraffer von geklonten Pflanzen erzeugt und ihr Wachstum über einen längeren Zeitraum auf einer Web-Oberfläche visualisiert.",
       },
+      gridAssembly: [
+        {
+          src: "../../public/splatTimelaps/jar-in-question.jpg",
+          alt: {
+            en: "A jar with a small plant inside",
+            de: "Eine kleine pflanze in einem Glasbehälter",
+          },
+        },
+      ],
       descriptionTheory2: {
         en: "My first idea was to 3D-scan the plant. Unfortunately, scanning an object inside a glass container with condensing on the glass is nearly impossible with a standard 3D scan. It can't represent reflections correctly, since it just projects the object's texture onto a generated mesh.",
         de: "Meine erste gedanke war, die Pflanze per 3D-Scan zu erfassen. Leider ist das Scannen eines Objekts in einem Glasbehälter mit Kondenswasser auf dem Glas mit einem herkömmlichen 3D-Scan praktisch unmöglich. Reflexionen lassen sich mit dieser Methode nicht korrekt darstellen, da dabei lediglich die Textur des Objekts auf ein generiertes Mesh projiziert wird.",
@@ -42,6 +51,15 @@ const content = {
         en: "Testing the Hypothesis",
         de: "Meine Hypothese auf die Probe stellen",
       },
+      gridSimulation: [
+        {
+          src: "../../public/splatTimelaps/simulation-screenshot.png",
+          alt: {
+            en: "A Blender render of a plant in a jar",
+            de: "Eine Blender Szene mit einer pflanze im Glas",
+          },
+        },
+      ],
       descriptionTesting1: {
         en: "To test this, I set up a scene in Blender: a similar reference model, placed in a black void and lit it with a diffused light source above it. Then I just had to rotate the object and capture a shot every 10 degrees. These images were then fed into the splat generator.",
         de: "Um das zu testen, erstelle ich in Blender eine Szene mit einem ähnlichen Referenzmodell, platziert in einem schwarzen Leerraum und mit einer diffusen Lichtquelle von oben beleuchtet. Anschließend musste ich das Objekt nur noch drehen und alle 10 Grad eine Aufnahme erstellen. Diese Bilder habe ich dann dem Splat-Generator gegeben.",
@@ -54,6 +72,43 @@ const content = {
         en: "Building the Physical Prototype",
         de: "Realer Test",
       },
+      grid: [
+        {
+          src: "../../public/splatTimelaps/assembly-1.jpg",
+          alt: {
+            en: "Assembly step 1 of the Project",
+            de: "Aufbau schritt 1 des Projects",
+          },
+        },
+        {
+          src: "../../public/splatTimelaps/assembly-2.jpg",
+          alt: {
+            en: "Assembly step 2 of the Project",
+            de: "Aufbau schritt 2 des Projects",
+          },
+        },
+        {
+          src: "../../public/splatTimelaps/assembly-3.jpg",
+          alt: {
+            en: "Assembly step 3 of the Project",
+            de: "Aufbau schritt 3 des Projects",
+          },
+        },
+        {
+          src: "../../public/splatTimelaps/assembly-4.jpg",
+          alt: {
+            en: "Assembly step 4 of the Project",
+            de: "Aufbau schritt 4 des Projects",
+          },
+        },
+        {
+          src: "../../public/splatTimelaps/assembly-5.jpg",
+          alt: {
+            en: "Assembly step 5 of the Project",
+            de: "Aufbau schritt 5 des Projects",
+          },
+        },
+      ],
       descriptionPrototype1: {
         en: "The simulation gave me enough confidence to move to a real-world build.",
         de: "Die Simulation gab mir genug Sicherheit, um einen Realen Test durchzuführen.",
