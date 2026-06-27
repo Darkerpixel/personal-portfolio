@@ -1,0 +1,29 @@
+## Gaussian Splat Time-lapse
+
+by Darkerpixel
+
+Theory
+I was invited to build a working prototype for a future system that generates time-lapses of cloned plants - visualizing their growth over time on a web interface.
+
+My first idea was to 3D-scan the plant. Unfortunately, scanning an object inside a glass container with condensing on the glass is nearly impossible with a standard 3D scan. It can't represent reflections correctly, since it just projects the object's texture onto a generated mesh.
+
+But there is a scanning technique that can produce somewhat accurate reflections: Gaussian Splatting.
+A Gaussian splat generates points in 3D space, each with color, size, transparency, and more. These "splats" are layered to create the illusion of texture and mesh, and because of how they work, they can represent reflections correctly from every angle the footage was shot from.
+
+The constraint: space was limited, so an orbiting camera was off the table. But a stationary camera with a rotating base risks confusing the splat generator. My hypothesis was, if the splat generator can't identify anything behind the object, it should be possible to fake an orbiting camera using a turntable base instead.
+
+Testing the Hypothesis
+To test this, I set up a scene in Blender: a similar reference model, placed in a black void and lit it with a diffused light source above it. Then I just had to rotate the object and capture a shot every 10 degrees. These images were then fed into the splat generator.
+Unfortunately, the splat generator interpreted the black void as part of the object. Luckily, there was a simple fix, involved deleting any splats below a black color threshold.
+
+Building the Physical Prototype
+The simulation gave me enough confidence to move to a real-world build.
+
+I decided on a cardboard box design with a hole on the bottom for the spinning base and a hole cut for the camera. The interior is painted as black as I could manage.
+An LCD backlight (salvaged from an old screen) as the diffuse light source. Though its original cables were damaged from a previous project, I had to wire in an alternate light source. And finally, to rotate the base, I used a sting.
+
+The Result
+
+The result of the real-world scan was successful enough to continue. Unfortunately, the black paint inside the box was not black enough to block all light like in the blender simulation. Additionally, I was not able to remove the unwanted splats with the tool like in the simulation. The reason why was because the black background also inherited color bleed from the object and the black paint was more reflective than expected.
+
+Work on this is paused until the scanner's final dimensions are confirmed. Components like proper matte-black paint and a rigid custom camera rig are too expensive to commit to just for further testing.
