@@ -228,7 +228,7 @@ h6 {
 }
 
 .main-bg {
-  background-image: url('../../public/pic-bg.jpg');
+  background-image: url("/pic-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -239,7 +239,7 @@ h6 {
 .card-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 2rem; 
+  row-gap: 2rem;
   column-gap: 2rem;
   margin-top: 2rem;
 }

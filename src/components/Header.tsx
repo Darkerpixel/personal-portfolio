@@ -1,5 +1,4 @@
 //Header.tsx
-import content from "./content.ts";
 import type { Language } from "../types.ts";
 import { useState } from "react";
 
@@ -13,11 +12,13 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
 
   return (
     <header className="header">
-      <h1 className="header-title">{content.header.main[language]}</h1>
+      <h1 className="header-title">
+        {language === "en" ? "Welcome" : "Willkommen"}
+      </h1>
 
       <div className="language-wrapper">
         <button className="language-btn" onClick={() => setIsOpen(true)}>
-          🌐 {content.header.languageSelector[language]}
+          🌐 {language === "en" ? "Language" : " Sprache"}
         </button>
 
         {isOpen && (
