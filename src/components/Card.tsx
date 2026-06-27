@@ -44,10 +44,10 @@ const Card1 = ({ language }: CardProps) => {
               <button className="close-btn" onClick={() => setOpenIndex(null)}>
                 ✕
               </button>
-              <div className="card-inner">
-                {" "}
-                {/* ← new container for the better scroller */}
-                <div className="card-content">
+              <div className="card-content">
+                <div className="card-inner">
+                  {" "}
+                  {/* ← new container for the better scroller */}
                   <Content />
                 </div>
               </div>
