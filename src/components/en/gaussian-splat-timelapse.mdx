@@ -7,7 +7,7 @@ coverImage: jar-in-question.jpg
 Theory
 I was invited to build a working prototype for a future system that generates time-lapses of cloned plants - visualizing their growth over time on a web interface.
 
-<RawImage
+<ImageRaw
   src="../../public/splatTimelaps/jar-in-question.jpg"
   alt="A jar with a small plant inside"
 />
@@ -24,6 +24,32 @@ To test this, I set up a scene in Blender: a similar reference model, placed in 
 Unfortunately, the splat generator interpreted the black void as part of the object. Luckily, there was a simple fix, involved deleting any splats below a black color threshold.
 
 Building the Physical Prototype
+
+<ImageGrid
+  images={[
+    {
+      src: "../../public/splatTimelaps/assembly-1.jpg",
+      alt: "Assembly step 1 of the Project",
+    },
+    {
+      src: "../../public/splatTimelaps/assembly-2.jpg",
+      alt: "Assembly step 2 of the Project",
+    },
+    {
+      src: "../../public/splatTimelaps/assembly-3.jpg",
+      alt: "Assembly step 3 of the Project",
+    },
+    {
+      src: "../../public/splatTimelaps/assembly-4.jpg",
+      alt: "Assembly step 4 of the Project",
+    },
+    {
+      src: "../../public/splatTimelaps/assembly-5.jpg",
+      alt: "Assembly step 5 of the Project",
+    },
+  ]}
+/>
+
 The simulation gave me enough confidence to move to a real-world build.
 
 I decided on a cardboard box design with a hole on the bottom for the spinning base and a hole cut for the camera. The interior is painted as black as I could manage.

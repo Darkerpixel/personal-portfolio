@@ -1,7 +1,19 @@
-import type { RawImageProps } from "../types";
+import type { ImageProps, ImagesProps } from "../types";
 
-const RawImage = ({ src, alt }: RawImageProps) => {
-  return <img src={src} alt={alt} />;
+const ImageRaw = ({ src, alt }: ImageProps) => {
+  return <img className="img" src={src} alt={alt} />;
 };
 
-export { RawImage };
+const ImageGrid = ({ images }: ImagesProps, index: number) => {
+  return (
+    <div className="image-grid">
+      {images.map((image) => {
+        return (
+          <img className="img" src={image.src} alt={image.alt} key={index} />
+        );
+      })}
+    </div>
+  );
+};
+
+export { ImageRaw, ImageGrid };
