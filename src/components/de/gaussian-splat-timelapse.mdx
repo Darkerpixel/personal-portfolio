@@ -1,0 +1,31 @@
+---
+title: Gaussian-Splat Zeitraffer
+author: von Darkerpixel
+coverImage: jar-in-question.jpg
+---
+
+Theorie
+Mir wurde die Möglichkeit gegeben, einen funktionierenden Prototypen für ein zukünftiges System zu entwickeln, welches Zeitraffer von geklonten Pflanzen erzeugt und ihr Wachstum über einen längeren Zeitraum auf einer Web-Oberfläche visualisiert.
+
+Meine erste gedanke war, die Pflanze per 3D-Scan zu erfassen. Leider ist das Scannen eines Objekts in einem Glasbehälter mit Kondenswasser auf dem Glas mit einem herkömmlichen 3D-Scan praktisch unmöglich. Reflexionen lassen sich mit dieser Methode nicht korrekt darstellen, da dabei lediglich die Textur des Objekts auf ein generiertes Mesh projiziert wird.
+
+Es gibt jedoch eine Scan-Technik, die einigermaßen genaue Reflexionen erzeugen kann: Gaussian Splatting.
+Ein Gaussian-Splat erzeugt Punkte im 3D-Raum, jeder mit eigener Farbe, Größe, Transparenz und weiteren Eigenschaften. Diese „Splats“ werden hintereinandergelegt, um die Illusion von Textur und Mesh zu erzeugen. Durch ihre Funktionsweise können sie Reflexionen aus jedem Blickwinkel, aus dem das Material gefilmt wurde, korrekt wiedergeben.
+
+Die Einschränkung: Eine Orbital Kamera würde zu viel Platz in anspruch nehmen, daher ist eine feststehende Kamera mit rotierender Platform die alternative. Allerdings würde eine stationaire Kamera den Gaussian-Splat Generator verwirren. Meine Hypothese war: Wenn der Splat-Generator nichts hinter dem Objekt identifizieren kann, müsste es möglich sein, eine Orbital Kamera vorzutäuschen.
+
+Meine Hypothese auf die Probe stellen
+Um das zu testen, erstelle ich in Blender eine Szene mit einem ähnlichen Referenzmodell, platziert in einem schwarzen Leerraum und mit einer diffusen Lichtquelle von oben beleuchtet. Anschließend musste ich das Objekt nur noch drehen und alle 10 Grad eine Aufnahme erstellen. Diese Bilder habe ich dann dem Splat-Generator gegeben.
+Leider interpretierte der Splat-Generator den schwarzen Leerraum als Teil des Objekts. Zum Glück gab es eine einfache Lösung dafür: alle Splats unterhalb einer bestimmten Schwarz-Farbschwelle wurden entfernt.
+
+Realer Test
+Die Simulation gab mir genug Sicherheit, um einen Realen Test durchzuführen.
+
+Ich entschied mich für ein Gehäuse aus Karton mit einem Loch im Boden für die rotierende Platform und einem ausgeschnittenen Loch für die Kamera. Das Innere strich ich so schwarz, wie es mir möglich war.
+Als diffuse Lichtquelle entschied ich eine LCD-Hintergrundbeleuchtung zu verwenden, die ich aus einem alten Bildschirm ausgebaut hatte. Da die ursprünglichen Kabel jedoch durch ein früheres Projekt beschädigt waren, musste ich eine alternative Lichtquelle improvisieren. Schließlich um die Platform zu drehen benutzte ich eine einache Schnur.
+
+Das Ergebnis
+
+Das Ergebnis des realen Scans war erfolgreich genug, um die Arbeit fortzusetzen. Leider war die schwarze Farbe im Inneren der Box nicht dunkel genug, um – wie in der Blender-Simulation – sämtliches Licht zu blockieren. Außerdem ließen sich die unerwünschten Splats nicht wie in der Simulation mit dem Werkzeug entfernen. Der Grund dafür sind die Farbeinflüsse des Objekts und die Reflectivität der benutzen schwarzen Farbe auf die schwarzen Splats.
+
+Die Arbeit daran liegt vorerst auf Eis, bis die endgültigen Maße des Scanners feststehen. Komponente wie eine stark Lichtabsorbierende schwarze Farbe und ein stabiler, maßgefertigter Kamera-Rig sind zu kostspielig, um sie allein für weitere Tests zu riskieren.
