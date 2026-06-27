@@ -8,7 +8,7 @@ interface MainProps {
 
 const Main = ({ language }: MainProps) => {
   return (
-    <main>
+    <main className="main main-bg">
       <Card language={language} />
     </main>
   );
