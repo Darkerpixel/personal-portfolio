@@ -29,7 +29,9 @@ const Card = ({ language }: CardProps) => {
             <button className="close-btn" onClick={() => setOpenIndex(null)}>
               ✕
             </button>
+            <div className="card-inner">  {/* ← new container for the better scroller */}
             <CardContent openIndex={openIndex} language={language} />
+            </div>
           </div>
         </div>
       )}
