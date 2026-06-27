@@ -1,5 +1,4 @@
 //Footer.tsx
-import content from "./content.ts";
 import type { Language } from "../types.ts";
 
 interface FooterProps {
@@ -10,7 +9,8 @@ const Footer = ({ language }: FooterProps) => {
   return (
     <footer className="footer">
       <h3>
-        © 2026 <span>PickleMan</span> • {content.footer[language]}
+        © 2026 <span>PickleMan</span> •{" "}
+        {language === "en" ? "Footer" : "Fußnote"}
       </h3>
     </footer>
   );
