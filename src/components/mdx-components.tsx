@@ -4,10 +4,10 @@ const ImageRaw = ({ src, alt }: ImageProps) => {
   return <img className="img" src={src} alt={alt} />;
 };
 
-const ImageGrid = ({ images }: ImagesProps, index: number) => {
+const ImageGrid = ({ images }: ImagesProps) => {
   return (
     <div className="image-grid">
-      {images.map((image) => {
+      {images.map((image, index) => {
         return <img src={image.src} alt={image.alt} key={index} />;
       })}
     </div>
