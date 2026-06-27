@@ -1,36 +1,52 @@
-//Card.tsx
-import content from "./content.ts";
-import type { Language } from "../types.ts";
 import { useState } from "react";
-import CardContent from "./CardContent.tsx";
+import type { Language } from "../types";
 
 interface CardProps {
   language: Language;
 }
 
-const Card = ({ language }: CardProps) => {
+const Card1 = ({ language }: CardProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const modules = {
+    en: import.meta.glob("./en/*.mdx", { eager: true }),
+    de: import.meta.glob("./de/*.mdx", { eager: true }),
+  };
+
+  const projects = Object.entries(modules[language]).map(([path, mod]: any) => {
+    return { path, frontmatter: mod.frontmatter, Component: mod.default };
+  });
+
+  const Content = openIndex !== null ? projects[openIndex].Component : null;
 
   return (
     <div className="card-grid">
-      {content.card.map(({ title }, index) => (
-        <div
-          key={index}
-          className="card-item"
-          onClick={() => setOpenIndex(index)}
-        >
-          <h2 className="card-title">{title[language]}</h2>
-        </div>
-      ))}
+      {projects.map(({ frontmatter }, index) => {
+        return (
+          <div
+            key={index}
+            className="card-item"
+            onClick={() => {
+              setOpenIndex(index);
+            }}
+          >
+            <h2 className="card-title">{frontmatter.title}</h2>
+          </div>
+        );
+      })}
 
-      {openIndex !== null && (
+      {Content && (
         <div className="backdrop" onClick={() => setOpenIndex(null)}>
           <div className="card" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={() => setOpenIndex(null)}>
               ✕
             </button>
-            <div className="card-inner">  {/* ← new container for the better scroller */}
-            <CardContent openIndex={openIndex} language={language} />
+            <div className="card-inner">
+              {" "}
+              {/* ← new container for the better scroller */}
+              <div className="card-content">
+                <Content />
+              </div>
             </div>
           </div>
         </div>
@@ -39,4 +55,4 @@ const Card = ({ language }: CardProps) => {
   );
 };
 
-export default Card;
+export default Card1;
