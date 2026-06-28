@@ -22,7 +22,7 @@ const Term = ({ reference, referenceText }: ReferenceProps) => {
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleOutsideClick = (event: MouseEvent) => {
+    const handleClick = (event: MouseEvent) => {
       if (
         wrapperRef.current &&
         wrapperRef.current.contains(event.target as Node)
@@ -32,9 +32,9 @@ const Term = ({ reference, referenceText }: ReferenceProps) => {
       setIsOpen(false);
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mousedown", handleClick);
 
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleClick);
   }, [isOpen]);
 
   return (
