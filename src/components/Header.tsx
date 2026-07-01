@@ -1,6 +1,6 @@
 //Header.tsx
 import type { Language } from "../types.ts";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface HeaderProps {
   language: Language;
@@ -9,6 +9,19 @@ interface HeaderProps {
 
 const Header = ({ language, setLanguage }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClick = (event: MouseEvent) => {
+      if (menuRef.current && menuRef.current.contains(event.target as Node)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [isOpen]);
 
   return (
     <header className="header">
@@ -23,11 +36,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
 
         {isOpen && (
           <>
-            <div
-              className="backdrop transparent"
-              onClick={() => setIsOpen(false)}
-            />
-            <div className="dropdown">
+            <div ref={menuRef} className="dropdown">
               <button
                 onClick={() => {
                   setLanguage("en");
