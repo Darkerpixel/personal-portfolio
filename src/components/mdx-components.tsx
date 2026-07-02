@@ -1,3 +1,4 @@
+//mdx-components.tsx
 import { useEffect, useRef, useState } from "react";
 import type { ImageProps, ImagesProps, ReferenceProps } from "../types";
 

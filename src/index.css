@@ -20,6 +20,7 @@
   --color-secondary: #64748b;
   --color-border: #e2e8f0;
   --color-text: #1e293b;
+  --color-primary: #39692d;
 
   /* Card Glitter Effect */
   --background: rgb(20,20,20);
@@ -104,7 +105,7 @@ h6 {
 /* ============================================
    BACKDROP
    ============================================ */
-.backdrop {
+.modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -117,7 +118,7 @@ h6 {
   z-index: 1000;
 }
 
-.backdrop.transparent {
+.modal-backdrop.transparent {
   background: #00000000;
 }
 
@@ -242,21 +243,19 @@ h6 {
   gap: 16px;
   width: 100%;
   padding: 2rem;
-  /* flex-wrap:wrap; */
-  /* max-width: 66%; */
-  /* margin: auto; */
-  /* padding: 16px; */
 }
-.cards-grid:hover > .card:before {
+.cards-grid > .card-wrapper > .card-item:before {
   opacity: 1;
   transition-delay: 0.1s;
 }
-.cards-grid:hover > .card:after {
+.cards-grid > .card-wrapper > .card-item:after {
   opacity: .925;
   transition-delay: 0s;
 }
-
-.card {
+.card-wrapper {
+  display: contents;
+}
+.card-item {
   position: relative;
   background-color: rgba(33,33,33,1);
   border-radius:10px;
@@ -265,18 +264,18 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  image-rendering: pixelate;
+  image-rendering: pixelated;
   padding: 2rem;
   text-align: center;
 }
 
-.card:before,
-.card:after {
+.card-item:before,
+.card-item:after {
   transition: opacity 500ms ease;
-  image-rendering: pixelate;
+  image-rendering: pixelated;
 }
 
-.card:after {
+.card-item:after {
   
   --bgoffsetx: calc( 3px * var(--ratio-x)); 
   --bgoffsety: calc( 3px * var(--ratio-y));
@@ -298,8 +297,8 @@ h6 {
 
   background-size: cover;
 }
-.card:after {
-  
+.card-item:after {
+
   content: "";
   position: absolute;
   inset: 1px;
@@ -311,9 +310,7 @@ h6 {
   
 }
 
-
-
-.card:before {
+.card-item:before {
   content: "";
   background-image: 
     conic-gradient(from 0deg at calc( 0% + var(--mouse-x) ) calc( 0% + var(--mouse-y) ), 
@@ -327,8 +324,8 @@ h6 {
   z-index: 1;
 }
 
-.card:before {
-  
+.card-item:before {
+
   content: "";
   background-color: rgba(255,255,255,0);
   border-radius: inherit;
@@ -357,7 +354,7 @@ h6 {
 
 
 /* --- MODAL --- */
-.card-modal {
+.modal-item{
   background: white;
   margin: 2rem;
   border-radius: 6px;
@@ -367,7 +364,7 @@ h6 {
   animation: scaleIn var(--transition-base);
 }
 
-.card-modal-content {
+.modal-content {
   padding: 2rem;
   margin-top: 2rem;
   margin-right: 0.3rem;
@@ -387,7 +384,7 @@ h6 {
 }
 
 /* Close Button im Modal */
-.card-modal .close-btn {
+.modal-item .modal-close-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -405,27 +402,27 @@ h6 {
   border-radius: 50px;
 }
 
-.card-modal .close-btn:hover {
+.modal-item .modal-close-btn:hover {
   color: var(--color-danger);
   background: rgba(220, 38, 38, 0.1);
   transform: rotate(90deg);
 }
 
 /* --- CARD CONTENT --- */
-.card-modal-content {
+.modal-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.card-modal-content h2 {
+.modal-content h2 {
   font-size: 2rem;
   color: var(--color-accent);
   text-align: center;
   margin: 0;
 }
 
-.card-modal-content .author {
+.modal-content .author {
   text-align: center;
   color: var(--color-secondary);
   font-style: italic;
@@ -434,14 +431,14 @@ h6 {
   margin: 0;
 }
 
-.card-modal-content .image-grid {
+.modal-content .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
   margin: 1rem 0;
 }
 
-.card-modal-content .image-grid img {
+.modal-content .image-grid img {
   width: 100%;
   height: 150px;
   object-fit: cover;
@@ -450,13 +447,13 @@ h6 {
   transition: all var(--transition-base);
 }
 
-.card-modal-content .image-grid img:hover {
+.modal-content .image-grid img:hover {
   transform: scale(1.05);
   border-color: var(--color-accent);
   box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
 }
 
-.card-modal-content .description {
+.modal-content .description {
   background: rgba(233, 69, 96, 0.05);
   padding: 1.5rem;
   border-radius: 12px;
@@ -517,21 +514,21 @@ h6 {
     gap: 1rem;
   }
 
-  .card-modal {
+  modal-item{
     padding: 1.5rem;
     min-width: unset;
     width: 95%;
   }
 
-  .card-modal-content h2 {
+  .modal-content h2 {
     font-size: 1.5rem;
   }
 
-  .card-modal-content .image-grid {
+  .modal-content .image-grid {
     grid-template-columns: 1fr;
   }
 
-  .card-modal-content .image-grid img {
+  .modal-content .image-grid img {
     height: 200px;
   }
 

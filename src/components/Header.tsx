@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header = ({ language, setLanguage }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
