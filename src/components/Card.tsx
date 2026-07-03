@@ -80,15 +80,17 @@ const Card = ({ language }: CardProps) => {
     <>
       <div ref={containerRef} className="card-wrapper">
         {projects.map(({ frontmatter }, index) => (
-          <div
+          <button
             key={index}
             className="card-item"
             onClick={() => setOpenIndex(index)}
+            type="button"
           >
             <div className="card-content">
-              <h2>{frontmatter.title}</h2>
+              <h1>{frontmatter.title}</h1>
+              <h2>{frontmatter.subtitle}</h2>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
@@ -102,7 +104,7 @@ const Card = ({ language }: CardProps) => {
               >
                 ✕
               </button>
-              <div className="modal-content">
+              <div className="modal-content custom-scroll">
                 <Content />
               </div>
             </div>
