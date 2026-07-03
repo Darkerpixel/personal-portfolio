@@ -8,8 +8,10 @@ interface MainProps {
 
 const Main = ({ language }: MainProps) => {
   return (
-    <main className="main main-bg">
-      <Card language={language} />
+    <main className="main">
+      <div className="cards-grid">
+        <Card language={language} />
+      </div>
     </main>
   );
 };

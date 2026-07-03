@@ -1,7 +1,9 @@
+//Card.tsx
 import { useState, useEffect, useRef } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import * as MdxComponents from "./mdx-components.tsx";
 import type { Language } from "../types";
+import { phantomMouse, isTouchDevice } from "./phantomMouse.ts";
 
 interface CardProps {
   language: Language;
@@ -9,90 +11,105 @@ interface CardProps {
 
 const Card = ({ language }: CardProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const modules = {
     en: import.meta.glob("./en/*.mdx", { eager: true }),
     de: import.meta.glob("./de/*.mdx", { eager: true }),
   };
-  const projects = Object.entries(modules[language]).map(([path, mod]: any) => {
-    return { path, frontmatter: mod.frontmatter, Component: mod.default };
-  });
+
+  const projects = Object.values(modules[language]).map((mod: any) => ({
+    frontmatter: mod.frontmatter,
+    Component: mod.default,
+  }));
   const Content = openIndex !== null ? projects[openIndex].Component : null;
 
-  // ========== GLITTER-EFFEKT LOGIC ==========
-  const containerRef = useRef<HTMLDivElement>(null);
+  const updateCardPositions = (
+    mx: number,
+    my: number,
+    cards: NodeListOf<Element>,
+  ) => {
+    cards.forEach((el) => {
+      const card = el as HTMLElement;
+      const rect = card.getBoundingClientRect();
+      const x = mx - rect.left;
+      const y = my - rect.top;
+      const over = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
+
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+      card.style.setProperty(
+        "--ratio-x",
+        `${Math.min(Math.max(x / rect.width, 0), 1)}`,
+      );
+      card.style.setProperty(
+        "--ratio-y",
+        `${Math.min(Math.max(y / rect.height, 0), 1)}`,
+      );
+      card.style.setProperty("--glitter-opacity", over ? "1" : "0");
+      card.style.setProperty("--glitter-active", over ? "1" : "0");
+    });
+  };
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    const grid = container?.closest(".cards-grid") as HTMLElement | null;
+    if (!container || !grid) return;
 
-    document.body.style.setProperty("--dw", document.body.clientWidth + "px");
-    document.body.style.setProperty("--dh", document.body.clientHeight + "px");
+    document.body.style.setProperty("--dw", `${document.body.clientWidth}px`);
+    document.body.style.setProperty("--dh", `${document.body.clientHeight}px`);
 
-    const handlePointerMove = (e: PointerEvent) => {
-      const cardItems = container.querySelectorAll(".card");
-      const cardsArray = Array.from(cardItems);
+    const cardItems = container.querySelectorAll(".card-item");
+    const handlePointerMove = (e: PointerEvent) =>
+      !isTouchDevice() && updateCardPositions(e.clientX, e.clientY, cardItems);
 
-      for (const card of cardsArray) {
-        const cardElement = card as HTMLElement;
-        const rect = cardElement.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    phantomMouse.init(grid);
+    phantomMouse.setGrid(grid);
+    const unsubscribe = phantomMouse.subscribe(
+      (pos) => isTouchDevice() && updateCardPositions(pos.x, pos.y, cardItems),
+    );
 
-        cardElement.style.setProperty("--mouse-x", `${x}px`);
-        cardElement.style.setProperty("--mouse-y", `${y}px`);
-
-        const ratioX = Math.min(Math.max(x / rect.width, 0), 1);
-        const ratioY = Math.min(Math.max(y / rect.height, 0), 1);
-
-        cardElement.style.setProperty("--ratio-x", ratioX.toString());
-        cardElement.style.setProperty("--ratio-y", ratioY.toString());
-      }
-    };
-
-    container.addEventListener("pointermove", handlePointerMove);
-
+    document.addEventListener("pointermove", handlePointerMove);
     return () => {
-      container.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointermove", handlePointerMove);
+      unsubscribe();
     };
   }, []);
-  // ========== ENDE GLITTER-EFFEKT ==========
 
   return (
-    <div className="cards-grid" id="cards" ref={containerRef}>
-      {projects.map(({ frontmatter }, index) => {
-        return (
+    <>
+      <div ref={containerRef} className="card-wrapper">
+        {projects.map(({ frontmatter }, index) => (
           <div
             key={index}
-            className="card"
-            onClick={() => {
-              setOpenIndex(index);
-            }}
+            className="card-item"
+            onClick={() => setOpenIndex(index)}
           >
             <div className="card-content">
               <h2>{frontmatter.title}</h2>
             </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
 
       {Content && (
         <MDXProvider components={MdxComponents}>
-          <div className="backdrop" onClick={() => setOpenIndex(null)}>
-            <div className="card-modal" onClick={(e) => e.stopPropagation()}>
-              <button className="close-btn" onClick={() => setOpenIndex(null)}>
+          <div className="modal-backdrop" onClick={() => setOpenIndex(null)}>
+            <div className="modal-item" onClick={(e) => e.stopPropagation()}>
+              <button
+                className="modal-close-btn"
+                onClick={() => setOpenIndex(null)}
+              >
                 ✕
               </button>
-              <div className="card-modal-content">
-                {" "}
-                {/* ← new container for the better scroller */}
+              <div className="modal-content">
                 <Content />
               </div>
             </div>
           </div>
         </MDXProvider>
       )}
-    </div>
+    </>
   );
 };
 
