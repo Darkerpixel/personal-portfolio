@@ -11,11 +11,6 @@ const Main = ({ language }: MainProps) => {
     <main className="main">
       <div className="cards-grid">
         <Card language={language} />
-        <Card language={language} />
-        <Card language={language} />
-        <Card language={language} />
-        <Card language={language} />
-        <Card language={language} />
       </div>
     </main>
   );
