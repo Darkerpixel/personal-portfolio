@@ -39,11 +39,11 @@ const Term = ({ reference, referenceText }: ReferenceProps) => {
   }, [isOpen]);
 
   return (
-    <span ref={wrapperRef}>
+    <span className="modal-term" ref={wrapperRef}>
       <button onClick={() => setIsOpen((toggle) => !toggle)}>
         {reference}
       </button>
-      {isOpen && <span>{referenceText}</span>}
+      {isOpen && <span className="modal-term-definition">{referenceText}</span>}
     </span>
   );
 };
