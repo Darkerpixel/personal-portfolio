@@ -3,16 +3,57 @@ import { useEffect, useRef, useState } from "react";
 import type { ImageProps, ImagesProps, ReferenceProps } from "../types";
 
 const ImageRaw = ({ src, alt }: ImageProps) => {
-  return <img src={src} alt={alt} />;
+  const [isOpen, setIsOpen] = useState(false);
+  
+
+  return (
+    <>
+      <button className="modal-image" onClick={() => setIsOpen(true)}>
+        <img src={src} alt={alt} />
+      </button>
+      {isOpen && (
+        <div className="modal-image-backdrop" onClick={() => setIsOpen(false)}>
+          <div className="modal-image-zoom" onClick={(e) => e.stopPropagation()}>
+            <img src={src} alt={alt}/>
+              <button className="modal-close-btn" onClick={() => setIsOpen(false)}>
+              ✕
+              </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 const ImageGrid = ({ images }: ImagesProps) => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
-    <div className="image-grid">
-      {images.map((image, index) => {
-        return <img src={image.src} alt={image.alt} key={index} />;
-      })}
-    </div>
+    <>
+      <div className="image-grid">
+        {images.map((image, index) => (
+          <button key={index} className="modal-image" onClick={() =>setSelectedImage(image.src)}
+          >
+            <img className="modal-image" src={image.src} alt={image.alt} />
+          </button>
+        ))}
+      </div>
+      {selectedImage && (
+      <div className="modal-image-backdrop" onClick={() => setSelectedImage(null)}>
+        <div className="modal-image-zoom" onClick={(e) => e.stopPropagation()}>
+          <img src={selectedImage} alt="" />
+            <button 
+              className="modal-close-btn"
+              onClick={() => setSelectedImage(null)}
+            >
+              ✕
+            </button>
+        </div>
+
+      </div>      
+    )}
+    
+    </>
   );
 };
 

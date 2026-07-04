@@ -26,7 +26,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
   return (
     <header className="header">
       <h1 className="header-title">
-        {language === "en" ? "Welcome" : "Willkommen"}
+        {language === "en" ? "welcome" : "willkommen"}
       </h1>
 
       <div className="language-wrapper">
