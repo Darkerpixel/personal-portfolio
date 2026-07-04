@@ -617,6 +617,15 @@ h6 {
   }
 }
 
+.modal-term button:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(57, 105, 45, 0.2);
+  transition: all var(--transition-base);
+}
+
+
 /* ============================================
    FOOTER STYLES
    ============================================ */
@@ -735,6 +744,7 @@ h6 {
   .card-item {
     height: 200px;
   }
+}
 
   .image-grid {
     grid-template-columns: 1fr 1fr;
@@ -750,6 +760,11 @@ h6 {
     max-width: 300px;
     max-height: 300px;
   }
+  
+  .modal-content .image-grid img {
+    height: 150px;
+  }
+  
 }
 
 /* --- Tablets bis 768px --- */
