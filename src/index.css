@@ -1,6 +1,6 @@
 /*index.css*/
 /* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&display=swap");
 /* ============================================
    CSS VARIABLES & BASE STYLES
    ============================================ */
@@ -13,27 +13,27 @@
 :root {
   /* Colors header*/
   --color-header-bg: #000000;
-  --color-header-text: #6D6C6A;
+  --color-header-text: #6d6c6a;
 
   /* Colors main */
   --color-main-bg: #151516;
-  --color-main-text: #6D6C6A;
+  --color-main-text: #6d6c6a;
   --color-modal-bg: #222222;
-  --color-modal-text: #C0C0C0;
+  --color-modal-text: #c0c0c0;
 
   /* Colors footer */
   --color-footer-bg: #000000;
-  --color-footer-text: #B1ACAA;
+  --color-footer-text: #b1acaa;
 
-  --color-accent: #24CC44;
+  --color-accent: #24cc44;
   --color-border: #e2e8f0;
-  
+
   --color-test: red;
 
   /* Card Glitter Effect */
   --glitter: url("https://assets.codepen.io/13471/noise-base.png");
   --glitter2: url("https://assets.codepen.io/13471/noise-top.png");
-  
+
   /* Card Effekt Variablen */
   --light-size: 300px;
 
@@ -45,7 +45,6 @@
   --transition-base: 0.3s ease;
   --transition-slow: 0.5s ease;
 }
-
 
 body {
   font-family: var(--font-base);
@@ -142,7 +141,6 @@ h6 {
   position: relative;
 }
 
-
 .language-btn {
   background: rgba(57, 105, 45, 0.15);
   color: var(--color-header-text);
@@ -156,9 +154,9 @@ h6 {
   transition: all var(--transition-base);
   display: flex;
   justify-content: center; /* ← Zentriert den Inhalt horizontal */
-  align-items: center;     /* ← Zentriert den Inhalt vertikal */
+  align-items: center; /* ← Zentriert den Inhalt vertikal */
   gap: 8px;
-  margin: 0 auto;          /* ← Zentriert den Button selbst (falls nötig) */
+  margin: 0 auto; /* ← Zentriert den Button selbst (falls nötig) */
 }
 .language-btn:hover {
   background: var(--color-accent);
@@ -232,7 +230,7 @@ h6 {
 
 /* --- CARDS --- */
 .cards-grid {
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5vw;
   width: 100%;
@@ -245,7 +243,7 @@ h6 {
 }
 
 .cards-grid > .card-wrapper > .card-item:after {
-  opacity: .925;
+  opacity: 0.925;
   transition-delay: 0s;
 }
 
@@ -255,12 +253,12 @@ h6 {
 
 .card-item {
   position: relative;
-  background-color: rgba(33,33,33,1);
+  background-color: rgba(33, 33, 33, 1);
   border: none;
-  border-radius:10px;
+  border-radius: 10px;
   height: 25vh;
   min-height: 150px;
-  width:100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,19 +281,29 @@ h6 {
 }
 
 .card-item:after {
-  
-  --bgoffsetx: calc( 3px * var(--ratio-x)); 
-  --bgoffsety: calc( 3px * var(--ratio-y));
-  --pointerx: calc( 100% * var(--ratio-x));
-  --pointery: calc( 100% * var(--ratio-y));
-    background-image: 
-    radial-gradient(var(--light-size) circle at var(--pointerx) var(--pointery), rgba(0,0,0,0.75),black),
-    radial-gradient(var(--light-size) circle at var(--pointerx) var(--pointery), #252525cc, rgb(16, 16, 16) calc(var(--light-size) * 1)), 
-    var(--glitter2), 
-    var(--glitter2);
-  background-position: center, center, center, calc(var(--bgoffsetx)*1) calc(var(--bgoffsety)*1);
+  --bgoffsetx: calc(3px * var(--ratio-x));
+  --bgoffsety: calc(3px * var(--ratio-y));
+  --pointerx: calc(100% * var(--ratio-x));
+  --pointery: calc(100% * var(--ratio-y));
+  background-image:
+    radial-gradient(
+      var(--light-size) circle at var(--pointerx) var(--pointery),
+      rgba(0, 0, 0, 0.75),
+      black
+    ),
+    radial-gradient(
+      var(--light-size) circle at var(--pointerx) var(--pointery),
+      #252525cc,
+      rgb(16, 16, 16) calc(var(--light-size) * 1)
+    ),
+    var(--glitter2), var(--glitter2);
+  background-position:
+    center,
+    center,
+    center,
+    calc(var(--bgoffsetx) * 1) calc(var(--bgoffsety) * 1);
   background-blend-mode: normal, color-burn, color-dodge;
-  filter: brightness(1.4) contrast(.725);
+  filter: brightness(1.4) contrast(0.725);
 
   opacity: 0;
   z-index: 2;
@@ -306,25 +314,46 @@ h6 {
   content: "";
   position: absolute;
   inset: 1px;
-  border-radius:9px;
-  height:calc(100% - 2px);
-  width:calc(100% - 2px);
+  border-radius: 9px;
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
   transition-delay: 0.1s;
-  z-index:2;
+  z-index: 2;
 }
 
 /* Rainbow Colors: #FFBD8C 0%, #FD8585 11%, #FD8585 15%, #F882FF 27%, #F882FF 31%, #8785FE 42%, #8785FE 46%, #9AFCFF 55%, #9AFCFF 59%, #99FD9C 70%, #99FD9C 74%, #FFFD84 87%, #FFFD84 91%, #FFBD8C 100% */
 
- .card-item:before {
+.card-item:before {
   content: "";
-  background-image: 
-    conic-gradient(from 0deg at calc(0% + var(--mouse-x)) calc(0% + var(--mouse-y)), 
-      #24CC44 0%, #1DB83D 11%, #1DB83D 15%, #16A436 27%, #16A436 31%, #0F902F 42%, #0F902F 46%, #24CC44 55%, #24CC44 59%, #3DD864 70%, #3DD864 74%, #5AE07C 87%, #5AE07C 91%, #24CC44 100%
-      ), 
-    radial-gradient(calc(var(--light-size)*1.5) circle at var(--mouse-x) var(--mouse-y), 
-      rgba(255,255,255,.7), rgba(0, 0, 0, .5) 50%), 
-    radial-gradient(calc(var(--light-size)*1.5) circle at var(--mouse-x) var(--mouse-y), 
-      transparent, rgb(33,22,44) 60%, var(--color-main-bg) 120%);
+  background-image:
+    conic-gradient(
+      from 0deg at calc(0% + var(--mouse-x)) calc(0% + var(--mouse-y)),
+      #24cc44 0%,
+      #1db83d 11%,
+      #1db83d 15%,
+      #16a436 27%,
+      #16a436 31%,
+      #0f902f 42%,
+      #0f902f 46%,
+      #24cc44 55%,
+      #24cc44 59%,
+      #3dd864 70%,
+      #3dd864 74%,
+      #5ae07c 87%,
+      #5ae07c 91%,
+      #24cc44 100%
+    ),
+    radial-gradient(
+      calc(var(--light-size) * 1.5) circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.7),
+      rgba(0, 0, 0, 0.5) 50%
+    ),
+    radial-gradient(
+      calc(var(--light-size) * 1.5) circle at var(--mouse-x) var(--mouse-y),
+      transparent,
+      rgb(33, 22, 44) 60%,
+      var(--color-main-bg) 120%
+    );
   background-blend-mode: hue, color-dodge;
   transition-delay: 0s;
   z-index: 1;
@@ -332,16 +361,15 @@ h6 {
 
 .card-item:before {
   content: "";
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255, 255, 255, 0);
   border-radius: inherit;
-  opacity:0;
-  width:100%;
-  height:100%;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  left:0px;
-  top:0px;
+  left: 0px;
+  top: 0px;
 }
-
 
 .card-content {
   position: relative;
@@ -349,13 +377,12 @@ h6 {
   color: var(--color-main-text);
 }
 
-.glitter {  
+.glitter {
   position: absolute;
   width: 1px;
   height: 1px;
   opacity: 0;
 }
-
 
 /* ============================================
    MODAL STYLES
@@ -377,7 +404,7 @@ h6 {
   background: #00000000;
 }
 
-.modal-item{
+.modal-item {
   background-color: var(--color-modal-bg);
   width: 90vw;
   max-width: 1200px;
@@ -390,7 +417,6 @@ h6 {
   position: relative;
   animation: scaleIn var(--transition-base);
 }
-
 
 @keyframes scaleIn {
   from {
@@ -442,7 +468,7 @@ h6 {
 .custom-scroll {
   overflow-y: auto;
   max-height: 60vh;
-  
+
   /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: var(--color-accent) black;
@@ -582,27 +608,27 @@ h6 {
   border-radius: 6px;
   border: 1px solid var(--color-accent);
   z-index: 2000;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-  
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+
   max-width: 80vw;
   max-height: 80vh;
   white-space: normal;
   word-wrap: break-word;
   text-align: center;
   box-sizing: border-box;
-  
+
   animation: fadeIn 0.3s ease;
 }
 
 .modal-term-definition::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border-radius: 6px;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   z-index: -1;
 }
 
@@ -624,7 +650,6 @@ h6 {
   box-shadow: 0 4px 20px rgba(57, 105, 45, 0.2);
   transition: all var(--transition-base);
 }
-
 
 /* ============================================
    FOOTER STYLES
@@ -654,7 +679,7 @@ h6 {
    ============================================ */
 
 /* --- Smartphones bis 374px --- */
-@media (min-width: 320px) and (max-width: 374px) {  
+@media (min-width: 320px) and (max-width: 374px) {
   .header {
     padding: 0.5rem 2rem;
     gap: 0.5rem;
@@ -665,21 +690,20 @@ h6 {
   }
 
   .language-btn {
-  font-size: 0.7rem;
-  width: 120px;
-  padding: 0.5rem 0.6rem;
-} 
+    font-size: 0.7rem;
+    width: 120px;
+    padding: 0.5rem 0.6rem;
+  }
 
-.dropdown {
-  padding: 0.5rem 0.6rem;
-  width: 120px;
-}
+  .dropdown {
+    padding: 0.5rem 0.6rem;
+    width: 120px;
+  }
 
-.dropdown button {
-  font-size: 0.7rem;
-  text-align: left;
-}
-
+  .dropdown button {
+    font-size: 0.7rem;
+    text-align: left;
+  }
 
   .cards-grid {
     grid-template-columns: 1fr;
@@ -705,13 +729,13 @@ h6 {
   }
 
   .modal-content h2 {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 
   .modal-content p {
     font-size: 0.9rem;
   }
-    
+
   .modal-item {
     margin: 0.5rem;
     width: calc(100% - 3rem);
@@ -723,7 +747,7 @@ h6 {
     gap: 0.5rem;
   }
 
-  .modal-image{
+  .modal-image {
     width: 100px;
     height: 100px;
   }
@@ -735,7 +759,7 @@ h6 {
 }
 
 /* --- Smartphones bis 568px --- */
-@media (min-width: 375px) and (max-width: 568px) {  
+@media (min-width: 375px) and (max-width: 568px) {
   .cards-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -746,25 +770,23 @@ h6 {
   }
 }
 
-  .image-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
+.image-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
 
-  .modal-image {
-    width: 150px;
-    height: 150px;
-  }
+.modal-image {
+  width: 150px;
+  height: 150px;
+}
 
-  .modal-image-zoom img {
-    max-width: 300px;
-    max-height: 300px;
-  }
-  
-  .modal-content .image-grid img {
-    height: 150px;
-  }
-  
+.modal-image-zoom img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.modal-content .image-grid img {
+  height: 150px;
 }
 
 /* --- Tablets bis 768px --- */
@@ -797,7 +819,7 @@ h6 {
   }
 
   .modal-content p {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 
   .image-grid {
@@ -821,8 +843,8 @@ h6 {
   .cards-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-  } 
-  
+  }
+
   .image-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1.5rem;
@@ -832,7 +854,6 @@ h6 {
     width: 150px;
     height: 150px;
   }
-
 }
 
 /* --- Widescreen bis 1440px --- */
@@ -889,7 +910,7 @@ h6 {
     font-size: 2rem;
   }
 
-.custom-scroll {
-  max-height: 80vh;
-}
+  .custom-scroll {
+    max-height: 80vh;
+  }
 }
