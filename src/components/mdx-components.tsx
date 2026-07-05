@@ -3,26 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ImageProps, ImagesProps, ReferenceProps } from "../types";
 
 const ImageRaw = ({ src, alt }: ImageProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  
-
-  return (
-    <>
-      <button className="modal-image" onClick={() => setIsOpen(true)}>
-        <img src={src} alt={alt} />
-      </button>
-      {isOpen && (
-        <div className="modal-image-backdrop" onClick={() => setIsOpen(false)}>
-          <div className="modal-image-zoom" onClick={(e) => e.stopPropagation()}>
-            <img src={src} alt={alt}/>
-              <button className="modal-close-btn" onClick={() => setIsOpen(false)}>
-              ✕
-              </button>
-          </div>
-        </div>
-      )}
-    </>
-  );
+  return <img src={src} alt={alt} />;
 };
 
 const ImageGrid = ({ images }: ImagesProps) => {
