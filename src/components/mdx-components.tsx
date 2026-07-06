@@ -15,10 +15,9 @@ const ImageGrid = ({ images }: ImagesProps) => {
         {images.map((image, index) => (
           <button
             key={index}
-            className="modal-image"
             onClick={() => setSelectedImage(image)}
           >
-            <img className="modal-image" src={image.src} alt={image.alt} />
+            <img src={image.src} alt={image.alt} />
           </button>
         ))}
       </div>
@@ -33,12 +32,13 @@ const ImageGrid = ({ images }: ImagesProps) => {
           >
             <img src={selectedImage.src} alt={selectedImage.alt} />
             <button
-              className="modal-close-btn"
+              
               onClick={() => setSelectedImage(null)}
             >
               ✕
             </button>
-          </div>
+
+         </div>
         </div>
       )}
     </>
