@@ -7,12 +7,41 @@ const ImageRaw = ({ src, alt }: ImageProps) => {
 };
 
 const ImageGrid = ({ images }: ImagesProps) => {
+  const [selectedImage, setSelectedImage] = useState<ImageProps | null>(null);
+
   return (
-    <div className="image-grid">
-      {images.map((image, index) => {
-        return <img src={image.src} alt={image.alt} key={index} />;
-      })}
-    </div>
+    <>
+      <div className="image-grid">
+        {images.map((image, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedImage(image)}
+          >
+            <img src={image.src} alt={image.alt} />
+          </button>
+        ))}
+      </div>
+      {selectedImage && (
+        <div
+          className="modal-image-backdrop"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="modal-image-zoom"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={selectedImage.src} alt={selectedImage.alt} />
+            <button
+              
+              onClick={() => setSelectedImage(null)}
+            >
+              ✕
+            </button>
+
+         </div>
+        </div>
+      )}
+    </>
   );
 };
 
