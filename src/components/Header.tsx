@@ -1,6 +1,6 @@
 //Header.tsx
-import type { Language } from "../types.ts";
-import { useEffect, useRef, useState } from "react";
+import type { Language } from '../types.ts';
+import { useEffect, useRef, useState } from 'react';
 
 interface HeaderProps {
   language: Language;
@@ -19,27 +19,27 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
       }
       setIsOpen(false);
     };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
   }, [isOpen]);
 
   return (
     <header className="header">
       <h1 className="header-title">
-        {language === "en" ? "welcome" : "willkommen"}
+        {language === 'en' ? 'welcome' : 'willkommen'}
       </h1>
 
       <div className="language-wrapper">
         <button className="language-btn" onClick={() => setIsOpen(true)}>
-          🌐 {language === "en" ? "Language" : " Sprache"}
+          🌐 {language === 'en' ? 'Language' : ' Sprache'}
         </button>
 
         {isOpen && (
           <>
-            <div ref={menuRef} className="dropdown">
+            <div ref={menuRef} className="language-dropdown">
               <button
                 onClick={() => {
-                  setLanguage("en");
+                  setLanguage('en');
                   setIsOpen(false);
                 }}
               >
@@ -47,7 +47,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
               </button>
               <button
                 onClick={() => {
-                  setLanguage("de");
+                  setLanguage('de');
                   setIsOpen(false);
                 }}
               >
