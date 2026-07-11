@@ -1,6 +1,6 @@
 //mdx-components.tsx
-import { useEffect, useRef, useState } from 'react';
-import type { ImageProps, ImagesProps, ReferenceProps } from '../types';
+import { useEffect, useRef, useState } from "react";
+import type { ImageProps, ImagesProps, ReferenceProps } from "../types";
 
 const ImageRaw = ({ src, alt }: ImageProps) => {
   return <img src={src} alt={alt} />;
@@ -57,9 +57,9 @@ const Term = ({ reference, referenceText }: ReferenceProps) => {
       setIsOpen(false);
     };
 
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener("mousedown", handleClick);
 
-    return () => document.removeEventListener('mousedown', handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
   }, [isOpen]);
 
   return (
