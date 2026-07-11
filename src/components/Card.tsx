@@ -77,29 +77,28 @@ const Card = ({ language }: CardProps) => {
   }, []);
 
   return (
-    <>
-      <div ref={containerRef} className="card-wrapper">
-        {projects.map(({ frontmatter }, index) => (
-          <button
-            key={index}
-            className="card-item"
-            onClick={() => setOpenIndex(index)}
-            type="button"
-          >
-            <div className="card-content">
-              <h1>{frontmatter.title}</h1>
-              <h2>{frontmatter.subtitle}</h2>
-            </div>
-          </button>
-        ))}
+<>
+  <div ref={containerRef} className="card-wrapper">
+    {projects.map(({ frontmatter }, index) => (
+      <div
+        key={index}
+        className="card-item"
+        onClick={() => setOpenIndex(index)}
+      >
+        <div className="card-content">
+          <h1>{frontmatter.title}</h1>
+          <h2>{frontmatter.subtitle}</h2>
+        </div>
       </div>
+    ))}
+  </div>
 
       {Content && (
         <MDXProvider components={MdxComponents}>
           <div className="modal-backdrop" onClick={() => setOpenIndex(null)}>
             <div className="modal-item" onClick={(e) => e.stopPropagation()}>
               <button
-                className="modal-close-btn"
+                className="close-btn"
                 onClick={() => setOpenIndex(null)}
               >
                 ✕
