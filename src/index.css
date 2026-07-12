@@ -4,7 +4,7 @@
    @IMPORT & FONTS
    ============================================ */
 /* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&display=swap");
 
 /* ============================================
    CSS VARIABLES & BASE STYLES
@@ -34,14 +34,14 @@
   --color-border: #e2e8f0;
 
   /* Card Glitter Effect */
-  --glitter: url('https://assets.codepen.io/13471/noise-base.png');
-  --glitter2: url('https://assets.codepen.io/13471/noise-top.png');
+  --glitter: url("https://assets.codepen.io/13471/noise-base.png");
+  --glitter2: url("https://assets.codepen.io/13471/noise-top.png");
 
   /* Card Effekt Variablen */
   --light-size: 300px;
 
   /* Schriftarten */
-  --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   /* Transition */
   --transition-fast: 0.15s ease;
@@ -95,7 +95,7 @@ h6 {
 .header-title {
   font-size: 1.5rem;
   font-weight: 700;
-  font-family: 'Gemunu Libre', sans-serif;
+  font-family: "Gemunu Libre", sans-serif;
   background: linear-gradient(45deg, var(--color-accent), #39692d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -136,8 +136,8 @@ h6 {
   box-shadow: 0 4px 20px rgba(57, 105, 45, 0.2);
 }
 
-/* Dropdown */
-.dropdown {
+/* language-dropdown */
+.language-dropdown {
   position: absolute;
   top: calc(100% + 10px);
   left: 50%;
@@ -167,7 +167,7 @@ h6 {
   }
 }
 
-.dropdown button {
+.language-dropdown button {
   background: transparent;
   color: var(--color-header-text);
   border: none;
@@ -179,7 +179,7 @@ h6 {
   transition: all var(--transition-fast);
 }
 
-.dropdown button:hover {
+.language-dropdown button:hover {
   background: var(--color-accent);
   color: white;
 }
@@ -275,7 +275,7 @@ h6 {
 }
 
 .card-item:after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 1px;
   border-radius: 9px;
@@ -288,7 +288,7 @@ h6 {
 /* Rainbow Colors: #FFBD8C 0%, #FD8585 11%, #FD8585 15%, #F882FF 27%, #F882FF 31%, #8785FE 42%, #8785FE 46%, #9AFCFF 55%, #9AFCFF 59%, #99FD9C 70%, #99FD9C 74%, #FFFD84 87%, #FFFD84 91%, #FFBD8C 100% */
 
 .card-item:before {
-  content: '';
+  content: "";
   background-image:
     conic-gradient(
       from 0deg at calc(0% + var(--mouse-x)) calc(0% + var(--mouse-y)),
@@ -324,7 +324,7 @@ h6 {
 }
 
 .card-item:before {
-  content: '';
+  content: "";
   background-color: rgba(255, 255, 255, 0);
   border-radius: inherit;
   opacity: 0;
@@ -378,28 +378,37 @@ h6 {
   }
 }
 
-.modal-item button {
-  position: relative; /* ← Relativ zur Header-Zeile */
-  background: none;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--color-modal-bg);
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--color-accent);
   transition: all var(--transition-fast);
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
-  margin: 0.5rem 0.5rem 0.5rem auto;
+  border-radius: 50%;
+  /* margin: 0.5rem 0.5rem 0.5rem auto; */
+  z-index: 10;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.modal-item button:hover {
+.close-btn:hover {
   color: var(--color-accent);
-  background: var(--color-modal-bg);
+  background: var(--color-main-bg);
   transform: rotate(90deg);
-}
+    box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+  }
 
 .custom-scroll {
   overflow-y: auto;
@@ -415,12 +424,13 @@ h6 {
   margin-right: 0.3rem;
   height: calc(100% - 4rem);
   width: 100%;
+  height: 100%;
 }
 
 .modal-content h1 {
   font-size: 1.4rem;
   color: var(--color-accent);
-  font-family: 'Gemunu Libre', sans-serif;
+  font-family: "Gemunu Libre", sans-serif;
   text-align: left;
 }
 
@@ -440,47 +450,29 @@ h6 {
   text-align: justify;
 }
 
-.modal-content .author {
-  text-align: center;
-  color: var(--color-modal-text);
-  font-style: italic;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 1rem;
-  margin: 0;
-}
-
-.image-grid {
+.images-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin: 20px 0;
 }
 
-.image-grid button {
-  padding: 0;
+.thumbnail-image {
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all var(--transition-base);
   border-radius: 12px;
   border: 1px solid var(--color-border);
-  transition: all var(--transition-base);
-  cursor: pointer;
-  overflow: hidden;
   aspect-ratio: 1;
-  width: 100%;
   height: 100%;
   position: relative;
 }
 
-.image-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.image-grid button:hover {
+.thumbnail-image:hover {
   transform: scale(1.08);
 }
-
-.modal-image-backdrop {
+.image-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -494,7 +486,7 @@ h6 {
   /* backdrop-filter: blur(4px); */
 }
 
-.modal-image-zoom {
+.zoom-image {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -510,13 +502,11 @@ h6 {
   max-height: 90vh;
 }
 
-.modal-image-zoom img {
-  max-width: 300px;
-  max-height: 300px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+.zoom-image img {
   border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .modal-term {
@@ -615,7 +605,7 @@ h6 {
     justify-content: space-between;
   }
 
-  .image-grid {
+  .images-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -627,7 +617,7 @@ h6 {
 }
 
 @media (min-width: 768px) {
-  .image-grid {
+  .images-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     margin: 30px 0;
@@ -665,7 +655,7 @@ h6 {
     font-size: 1.8rem;
   }
 
-  .image-grid {
+  .images-grid {
     grid-template-columns: repeat(5, 1fr);
     gap: 60px;
     margin: 60px 0;

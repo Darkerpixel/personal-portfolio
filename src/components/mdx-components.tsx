@@ -11,34 +11,29 @@ const ImageGrid = ({ images }: ImagesProps) => {
 
   return (
     <>
-      <div className="image-grid">
+      <div className="images-grid">
         {images.map((image, index) => (
-          <button
+          <img
             key={index}
+            src={image.src}
+            alt={image.alt}
             onClick={() => setSelectedImage(image)}
-          >
-            <img src={image.src} alt={image.alt} />
-          </button>
+            className="thumbnail-image"
+            loading="lazy"
+          />
         ))}
       </div>
       {selectedImage && (
-        <div
-          className="modal-image-backdrop"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div
-            className="modal-image-zoom"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="image-backdrop" onClick={() => setSelectedImage(null)}>
+          <div className="zoom-image" onClick={(e) => e.stopPropagation()}>
             <img src={selectedImage.src} alt={selectedImage.alt} />
             <button
-              
+              className="close-btn"
               onClick={() => setSelectedImage(null)}
             >
               ✕
             </button>
-
-         </div>
+          </div>
         </div>
       )}
     </>

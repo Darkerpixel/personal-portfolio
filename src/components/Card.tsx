@@ -27,7 +27,7 @@ const Card = ({ language }: CardProps) => {
   const updateCardPositions = (
     mx: number,
     my: number,
-    cards: NodeListOf<Element>,
+    cards: NodeListOf<Element>
   ) => {
     cards.forEach((el) => {
       const card = el as HTMLElement;
@@ -40,11 +40,11 @@ const Card = ({ language }: CardProps) => {
       card.style.setProperty("--mouse-y", `${y}px`);
       card.style.setProperty(
         "--ratio-x",
-        `${Math.min(Math.max(x / rect.width, 0), 1)}`,
+        `${Math.min(Math.max(x / rect.width, 0), 1)}`
       );
       card.style.setProperty(
         "--ratio-y",
-        `${Math.min(Math.max(y / rect.height, 0), 1)}`,
+        `${Math.min(Math.max(y / rect.height, 0), 1)}`
       );
       card.style.setProperty("--glitter-opacity", over ? "1" : "0");
       card.style.setProperty("--glitter-active", over ? "1" : "0");
@@ -66,7 +66,7 @@ const Card = ({ language }: CardProps) => {
     phantomMouse.init(grid);
     phantomMouse.setGrid(grid);
     const unsubscribe = phantomMouse.subscribe(
-      (pos) => isTouchDevice() && updateCardPositions(pos.x, pos.y, cardItems),
+      (pos) => isTouchDevice() && updateCardPositions(pos.x, pos.y, cardItems)
     );
 
     document.addEventListener("pointermove", handlePointerMove);
@@ -80,17 +80,16 @@ const Card = ({ language }: CardProps) => {
     <>
       <div ref={containerRef} className="card-wrapper">
         {projects.map(({ frontmatter }, index) => (
-          <button
+          <div
             key={index}
             className="card-item"
             onClick={() => setOpenIndex(index)}
-            type="button"
           >
             <div className="card-content">
               <h1>{frontmatter.title}</h1>
               <h2>{frontmatter.subtitle}</h2>
             </div>
-          </button>
+          </div>
         ))}
       </div>
 
@@ -98,10 +97,7 @@ const Card = ({ language }: CardProps) => {
         <MDXProvider components={MdxComponents}>
           <div className="modal-backdrop" onClick={() => setOpenIndex(null)}>
             <div className="modal-item" onClick={(e) => e.stopPropagation()}>
-              <button
-                className="modal-close-btn"
-                onClick={() => setOpenIndex(null)}
-              >
+              <button className="close-btn" onClick={() => setOpenIndex(null)}>
                 ✕
               </button>
               <div className="modal-content custom-scroll">

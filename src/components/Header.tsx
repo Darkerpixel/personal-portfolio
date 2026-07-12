@@ -36,7 +36,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
 
         {isOpen && (
           <>
-            <div ref={menuRef} className="dropdown">
+            <div ref={menuRef} className="language-dropdown">
               <button
                 onClick={() => {
                   setLanguage("en");
