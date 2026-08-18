@@ -51,7 +51,7 @@
 
 body {
   font-family: var(--font-base);
-  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+  font-size: 16px;
   color: var(--color-main-text);
   background-color: var(--color-main-bg);
   min-height: 100vh;
@@ -80,28 +80,28 @@ h6 {
    ============================================ */
 
 .header {
-  background: var(--color-header-bg);
-  padding: 6vh 6vw;
+  position: relative;
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  padding: 6vh 6vw;
+  z-index: 100;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  background: var(--color-header-bg);
   border-bottom: 1px solid var(--color-accent);
   box-shadow: 0 4px 20px rgba(57, 105, 45, 0.2);
-  position: relative;
-  z-index: 100;
+  justify-content: space-between;
 }
 
 .header-title {
-  font-size: 1.5rem;
+  position: relative;
+  font-size: clamp(2rem, calc(2vw + 1rem), 10rem);
   font-weight: 700;
   font-family: "Gemunu Libre", sans-serif;
   background: linear-gradient(45deg, var(--color-accent), #39692d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0;
-  top: 0;
 }
 
 .language-wrapper {
@@ -111,22 +111,19 @@ h6 {
 }
 
 .language-btn {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(0.5rem, calc(2vw + 0.2rem), 1.5rem);
+  cursor: pointer;
   background: rgba(57, 105, 45, 0.15);
   color: var(--color-header-text);
   border: 1px solid var(--color-accent);
-  padding: 0.5rem 1.5rem;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: clamp(0.5rem, calc(2vw + 0.3rem), 8rem);
   font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  max-width: 200px;
   transition: all var(--transition-base);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: 0 auto;
 }
 
 .language-btn:hover {
@@ -139,20 +136,19 @@ h6 {
 /* language-dropdown */
 .language-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.25rem;
   left: 50%;
+  top: calc(100% + 0.5rem);
+  padding: 0.5rem;
   transform: translateX(-50%);
   z-index: 1001;
   background: var(--color-header-bg);
   border: 1px solid var(--color-accent);
   border-radius: 6px;
-  padding: 1rem;
-  width: 100%;
-  max-width: 200px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
   animation: slideDown var(--transition-base);
 }
 
@@ -171,10 +167,10 @@ h6 {
   background: transparent;
   color: var(--color-header-text);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: clamp(0.5rem, calc(2vw + 0.5rem), 10rem);
   font-weight: 500;
   transition: all var(--transition-fast);
 }
@@ -220,8 +216,8 @@ h6 {
   margin: 0 auto;
 }
 
-.card-item h1 {
-  font-size: 1rem;
+.card-content h2 {
+  font-size: clamp(1rem, calc(2vw + 0.5rem), 10rem);
   color: var(--color-main-text);
   margin: 0.5rem;
 }
@@ -384,17 +380,17 @@ h6 {
   right: 10px;
   background: var(--color-modal-bg);
   border: none;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, calc(4vw + 0.5rem), 10rem);
   cursor: pointer;
   color: var(--color-accent);
   transition: all var(--transition-fast);
-  width: 30px;
-  height: 30px;
+  width: calc(2rem + 4vw);
+  height: calc(2rem + 4vw);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  /* margin: 0.5rem 0.5rem 0.5rem auto; */
+  margin: clamp(0.5rem, calc(2vw), 5rem);
   z-index: 10;
   box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.15),
@@ -405,10 +401,10 @@ h6 {
   color: var(--color-accent);
   background: var(--color-main-bg);
   transform: rotate(90deg);
-    box-shadow:
+  box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.25),
     0 2px 8px rgba(0, 0, 0, 0.15);
-  }
+}
 
 .custom-scroll {
   overflow-y: auto;
@@ -427,27 +423,29 @@ h6 {
   height: 100%;
 }
 
-.modal-content h1 {
-  font-size: 1.4rem;
-  color: var(--color-accent);
+.modal-content h2 {
+  /* font-size: 1.4rem; */
+  color: var(--color-modal-text);
   font-family: "Gemunu Libre", sans-serif;
   text-align: left;
+  font-size: clamp(1.2rem, calc(2vw + 1rem), 8rem);
 }
 
-.modal-content h2 {
-  font-size: 1rem;
+.modal-content h3 {
+  /* font-size: 1rem; */
   color: var(--color-accent);
   text-align: left;
   line-height: 1.6;
   margin-top: 1rem;
+  font-size: clamp(1rem, calc(2vw + 0.2rem), 5rem);
 }
 
 .modal-content p {
   color: var(--color-modal-text);
-  font-size: 0.8rem;
   line-height: 1.4;
   margin: 0.7rem 0;
   text-align: justify;
+  font-size: clamp(0.8rem, calc(2vw + 0.2rem), 5rem);
 }
 
 .images-grid {
@@ -576,23 +574,18 @@ h6 {
    ============================================ */
 .footer {
   background: var(--color-footer-bg);
-  padding: 2vh 4vw;
+  padding: 2vh 6vw;
   text-align: center;
   border-top: 1px solid var(--color-accent);
-  margin-top: auto;
+  width: 100%;
 }
 
-.footer h3 {
+.footer p {
   font-weight: 400;
-  color: var(--color-footer-text);
-  letter-spacing: 1px;
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.footer h3 span {
-  color: var(--color-accent);
-  font-weight: 600;
+  color: var(--color-header-text);
+  letter-spacing: 0.02rem;
+  text-align: left;
+  font-size: clamp(0.2rem, calc(2vw + 0.2rem), 4rem);
 }
 
 /* ============================================
@@ -603,6 +596,11 @@ h6 {
   .header {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+  }
+
+  .language-wrapper {
+    top: 0.3rem;
   }
 
   .images-grid {
@@ -611,6 +609,9 @@ h6 {
 }
 
 @media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
   .cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -628,33 +629,9 @@ h6 {
   .cards-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-
-  .header-title {
-    font-size: 2rem;
-  }
-
-  .language-btn {
-    font-size: 1rem;
-  }
-
-  .card-item h1 {
-    font-size: 1.5rem;
-  }
 }
 
 @media (min-width: 1440px) {
-  .header-title {
-    font-size: 2.5rem;
-  }
-
-  .language-btn {
-    font-size: 1.2rem;
-  }
-
-  .card-item h1 {
-    font-size: 1.8rem;
-  }
-
   .images-grid {
     grid-template-columns: repeat(5, 1fr);
     gap: 60px;

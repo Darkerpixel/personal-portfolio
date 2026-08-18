@@ -86,8 +86,8 @@ const Card = ({ language }: CardProps) => {
             onClick={() => setOpenIndex(index)}
           >
             <div className="card-content">
-              <h1>{frontmatter.title}</h1>
-              <h2>{frontmatter.subtitle}</h2>
+              <h2>{frontmatter.title}</h2>
+              <h3>{frontmatter.subtitle}</h3>
             </div>
           </div>
         ))}

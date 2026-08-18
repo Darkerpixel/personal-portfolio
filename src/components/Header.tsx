@@ -25,9 +25,9 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
 
   return (
     <header className="header">
-      <h1 className="header-title">
+      <div className="header-title">
         {language === "en" ? "welcome" : "willkommen"}
-      </h1>
+      </div>
 
       <div className="language-wrapper">
         <button className="language-btn" onClick={() => setIsOpen(true)}>
@@ -43,7 +43,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
                   setIsOpen(false);
                 }}
               >
-                🇺🇸 English
+                English
               </button>
               <button
                 onClick={() => {
@@ -51,7 +51,7 @@ const Header = ({ language, setLanguage }: HeaderProps) => {
                   setIsOpen(false);
                 }}
               >
-                🇩🇪 Deutsch
+                Deutsch
               </button>
             </div>
           </>
