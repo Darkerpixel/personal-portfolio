@@ -8,10 +8,10 @@ interface FooterProps {
 const Footer = ({ language }: FooterProps) => {
   return (
     <footer className="footer">
-      <h3>
-        © 2026 <span>PickleMan</span> •{" "}
-        {language === "en" ? "Footer" : "Fußnote"}
-      </h3>
+      <p>
+        © 2026 {" "}
+        {language === "en" ? "All rights reserved" : "Alle Rechte vorbehalten"}
+      </p>
     </footer>
   );
 };
